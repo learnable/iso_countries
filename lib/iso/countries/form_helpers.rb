@@ -19,10 +19,12 @@ module ActionView #:nodoc:
         country_options = ""
 
         if priority_countries
-          priority_hash = {}
-          priority_countries.each {|code| priority_hash[ISO::Countries.get_country(code)] = code.to_s }
-          country_options += options_for_select(priority_hash.sort, selected)
-          country_options += "<option value=\"\">-------------</option>\n"
+          priority_countries.map! { |code| [ISO::Countries.get_country(code), code] } unless priority_countries.first.is_a?(Array)
+          
+          country_options += options_for_select(priority_countries, selected)
+          country_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+          
+          countries_for_select = countries_for_select.reject { |c| priority_countries.include?( c ) }
         end
 
         if priority_countries && priority_countries.include?(selected)
