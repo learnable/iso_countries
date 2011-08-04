@@ -1,3 +1,3 @@
 # Include hook code here
-ActiveSupport::Dependencies.load_once_paths.delete(lib_path)
+ActiveSupport::Dependencies.autoload_once_paths.delete(path)
 require "iso_countries"
