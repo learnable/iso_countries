@@ -45,11 +45,9 @@ module ISO
       
       # Wrapper to get country code from country name.
       def get_code(name)
-        if COUNTRIES.value?(name)
-          COUNTRIES.each_pair do |k,v|
-            if v.eql?(name)
-              return k.to_s
-            end
+        COUNTRIES.each_pair do |k,v|
+          if v.downcase.eql?(name.downcase)
+            return k.to_s
           end
         end
       end
