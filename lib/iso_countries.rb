@@ -3,7 +3,7 @@
 require "rubygems"
 begin
   require "gettext"
-rescue
+rescue LoadError
   require "ostruct"
   GetText = OpenStruct.new
   def _(str)
