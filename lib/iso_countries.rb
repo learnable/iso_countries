@@ -40,7 +40,7 @@ module ISO
       
       # Wrapper to get country name from country code. +code+ can be a symbol or a string containing the country code.
       def get_country(code)
-        _(COUNTRIES[code.to_sym]) rescue nil
+        _(COUNTRIES[code.to_sym].titleize) rescue nil
       end
       
       # Wrapper to get country code from country name.
